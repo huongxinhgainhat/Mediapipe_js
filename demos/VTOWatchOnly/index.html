@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content ="width=device-width, initial-scale=1.0">
+  <title>Thử Nhẫn AR</title>
+   <!-- THREE.JS - REPLACE IT BY three.min.js FOR PROD -->
+  <script src="../../libs/three/v136/build/three.js"></script>
+
+    <!-- THREE.JS EXTENSIONS -->
+  <script src="../../libs/three/v136/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="../../libs/three/v136/examples/js/loaders/RGBELoader.js"></script>
+
+  <!--script src="../../helpers/HandTrackerThreeHelper.js"></script-->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin=""></script>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas, video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+  <video id="video" autoplay muted playsinline></video>
+  <script>
+  const video = document.getElementById('video');
+
+  navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    .then(stream => {
+      video.srcObject = stream;
+    })
+    .catch(err => {
+      console.error('Lỗi truy cập camera:', err);
+    });
+  </script>
+
+  <!-- Mã chính -->
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
